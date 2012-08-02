@@ -54,7 +54,12 @@ cd $CEDAR_INSTALL_DIR > $CEDAR_LOG 2>&1
 check_exit_code
 
 printf "Clone OCHamcrest project from Github."
-git clone git://github.com/pivotal/OCHamcrest.git > $CEDAR_LOG 2>&1
+git clone git://github.com/aspitz/OCHamcrest.git > $CEDAR_LOG 2>&1
+check_exit_code
+
+
+printf "Clone OCMock project from Github."
+git clone git://github.com/aspitz/OCMock.git > $CEDAR_LOG 2>&1
 check_exit_code
 
 printf "Clone Cedar project from Github."
@@ -74,7 +79,7 @@ xcodebuild -project OCHamcrest/Source/OCHamcrest.xcodeproj -alltargets > $CEDAR_
 check_exit_code
 
 printf "Build all targets from OCMock project."
-xcodebuild -project cedar/Externals/OCMock/Source/OCMock.xcodeproj -alltargets > $CEDAR_LOG 2>&1
+xcodebuild -project OCMock/Source/OCMock.xcodeproj -alltargets > $CEDAR_LOG 2>&1
 check_exit_code
 
 printf "Build Cedar-StaticLib from Cedar project."
@@ -92,8 +97,8 @@ check_exit_code
 echo "Create symbolic links to" $FINAL_FRAMEWORK_PATH":"
 link_cedar "/OCHamcrest/Source/build/Release/OCHamcrest.framework" "OCHamcrest.framework"
 link_cedar "/OCHamcrest/Source/build/Release-iphoneuniversal/OCHamcrest-iPhone.framework" "OCHamcrest-iPhone.framework"
-link_cedar "/cedar/Externals/OCMock/Source/build/Release/OCMock.framework" "OCMock.framework"
-link_cedar "/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal/OCMock-iPhone.framework" "OCMock-iPhone.framework"
+link_cedar "/OCMock/Source/build/Release/OCMock.framework" "OCMock.framework"
+link_cedar "/OCMock/Source/build/Release-iphoneuniversal/OCMock-iPhone.framework" "OCMock-iPhone.framework"
 link_cedar "/cedar/build/Release/Cedar.framework" "Cedar.framework"
 link_cedar "/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework" "Cedar-iOS.framework"
 
